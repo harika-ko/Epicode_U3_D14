@@ -1,11 +1,15 @@
 import Article from '../types/Article'
 import { Card, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom'
 
 interface SingleArticleProps {
     article: Article
 }
 
 const SingleArticle = ({ article }: SingleArticleProps) => {
+
+    const navigate = useNavigate()
+
     return (
         <Card
             style={{ maxWidth: '17rem', height: '30rem', marginBottom: '1rem', position: "relative" }}
@@ -31,7 +35,8 @@ const SingleArticle = ({ article }: SingleArticleProps) => {
                     <Card.Text style={{ margin: "3px 0px" }}>
                         Published on : {article.publishedAt.slice(0, 10)}
                     </Card.Text>
-                    <Button variant="primary">Read more...</Button>
+
+                    <Button onClick={() => navigate(`/${article.id}`)} variant="primary">Read more...</Button>
                 </div>
             </Card.Body>
         </Card>
